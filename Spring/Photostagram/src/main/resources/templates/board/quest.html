@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/questLayout}">
+<th:block layout:fragment="main">
+    <section class="quest-screen">
+        <main class="quest-content">
+            <div class="content1">
+                <div class="content2">
+                    <div class="content3">
+                        <div class="content4">
+                            <th:block th:each="${allImg}">
+                            <div class="content5">
+                                <div class="content6">
+                                    <a class="content7" href="#">
+                                        <div class="content8">
+                                            <div class="content9">
+                                                <img th:src="|@{/}thumb/${allImg.thumb}">
+                                            </div>
+                                            <div class="content11"></div>
+                                        </div>
+                                        <div class="content12">
+                                            <div class="content13"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</th:block>
+</html>
