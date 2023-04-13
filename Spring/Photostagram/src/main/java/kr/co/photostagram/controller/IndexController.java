@@ -219,4 +219,21 @@ public class IndexController {
 
         return map;
     }
+
+    @PostMapping("insertBook")
+    @ResponseBody
+    @Transactional
+    public Map insertBook(@RequestBody Post_saveVO vo){
+        int result = 0;
+        result = service.insertPostSave(vo);
+
+        log.info(" =============================== ");
+        log.info("     댓글 좋아요취소 : " + result);
+        log.info(" =============================== ");
+
+        Map map = new HashMap();
+        map.put("result", result);
+
+        return map;
+    }
 }
