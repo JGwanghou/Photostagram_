@@ -1,10 +1,7 @@
 package kr.co.photostagram.service;
 
 import kr.co.photostagram.dao.IndexDAO;
-import kr.co.photostagram.vo.CommentVO;
-import kr.co.photostagram.vo.Comment_likeVO;
-import kr.co.photostagram.vo.MemberVO;
-import kr.co.photostagram.vo.PostVO;
+import kr.co.photostagram.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +18,8 @@ public class IndexService {
 
     @Autowired
     private IndexDAO dao;
+
+    public int insertPostSave(Post_saveVO vo){ return dao.insertPostSave(vo);}
 
     // 게시글 좋아요 , 좋아요 삭제
     public int insertArticleLikeAdd(PostVO vo) { return dao.insertArticleLikeAdd(vo); }

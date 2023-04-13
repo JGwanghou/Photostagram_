@@ -501,6 +501,50 @@ $(function () {
   /*
     북마크 (default : -237px -286px, click : -159px -286px)
   */
+  $(document).on("click", ".sprite_bookmark_outline", function () {
+    if ($(this).hasClass("sprite_bookmark_outline")) {
+      $(this)
+        .removeClass("sprite_bookmark_outline")
+        .addClass("sprite_full_bookmark_outline");
+    }
+
+    let value = $(this).attr("data-value");
+    let article = $(this).closest("article");
+    let post_no = article.attr("data-no");
+
+    let jsonData = {
+      user_no: value,
+      post_no: post_no,
+    };
+    $.ajax({
+      url: "/Photostagram/insertBook",
+      method: "POST",
+      data: jsonData,
+      dataType: "json",
+      success: function (data) {
+        if (data.result > 0) {
+          console.log(data);
+        }
+      },
+    });
+    console.log(" value 클릭 하기 전: " + value);
+    console.log(" post_no 클릭 하기 전 : " + post_no);
+  });
+
+  $(document).on("click", ".sprite_full_bookmark_outline", function () {
+    if ($(this).hasClass("sprite_full_bookmark_outline")) {
+      $(this)
+        .removeClass("sprite_full_bookmark_outline")
+        .addClass("sprite_bookmark_outline");
+    }
+
+    let value = $(this).attr("data-value");
+    let article = $(this).closest("article");
+    let post_no = article.attr("data-no");
+
+    console.log(" value 클릭한 후: " + value);
+    console.log(" post_no 클릭한 후 : " + post_no);
+  });
 
   $(".post_delete").on("click", function () {
     let no = $(this).attr("data-value");
@@ -518,8 +562,6 @@ $(function () {
         } else {
           alert("답글이 존재하면 삭제할 수 없습니다");
         }
-
-
       },
     });
   });

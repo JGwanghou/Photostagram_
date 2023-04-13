@@ -54,6 +54,7 @@ $(function () {
     console.log("comment_no : " + comment_no);
   });
 
+  /*** 좋아요 된 상태 클릭시 ***/
   $(document).on("click", ".reRed", function (e) {
     e.preventDefault();
 

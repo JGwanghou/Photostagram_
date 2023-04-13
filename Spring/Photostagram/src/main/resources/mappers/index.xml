@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.photostagram.dao.IndexDAO">
 
+    <insert id="insertPostSave">
+        INSERT INTO `post_save` SET
+            `user_no` = #{user_no},
+            `post_no` = #{post_no}
+             rdate = NOW();
+    </insert>
+
     <insert id="insertComment" useGeneratedKeys="true" keyColumn="no" keyProperty="no" parameterType="kr.co.photostagram.vo.CommentVO">
         INSERT INTO `comment` SET
             `comment` = #{comment},
@@ -49,12 +56,12 @@
         LEFT JOIN `hashtag` AS f ON e.hashtag_no = f.`no`
 
         WHERE a.
-        no = 134
-<!--            `user_no`-->
-<!--            IN-->
-<!--            <foreach collection="usersNo" item="following" index="index" separator="," open="(" close=")">-->
-<!--                 #{following},0-->
-<!--            </foreach>-->
+<!--        no = 134-->
+            `user_no`
+            IN
+            <foreach collection="usersNo" item="following" index="index" separator="," open="(" close=")">
+                 #{following},0
+            </foreach>
 
 
         ORDER BY a.`no` DESC;
@@ -129,6 +136,9 @@
         WHERE `no`= #{comment_no};
     </delete>
 
+    <delete id="deleteBookmark">
+
+    </delete>
     <resultMap id="selectArticleResultMap" type="kr.co.photostagram.vo.PostVO">
         <result column="no" property="no"/>
         <result column="content" property="content"/>
