@@ -79,8 +79,6 @@
 
                         }else{
                             alert("실패");
-
-
                         }
                     }
                 });
@@ -198,17 +196,14 @@
                         <a href="#" id="likeThis" class="like" th:unless="${post_like_user == null}" th:data-no="${user.no}"></a>
                         <a href="#" id="writeReply"></a>
                         <a href="#" id="share"></a>
-                        <a href="#" id="bookMark" class="remove"></a>
+                        <a href="#" id="bookMark" class="remove" th:data-no="${user.no}"></a>
                     </div>
 
-                    <div th:if="${content_like_time.like > 0}">
+                    <div>
                         <div>좋아요 <span class="like-count">[[${content_like_time.like}]]</span>개</div>
                         <div class="date" th:text="${#strings.substring(content_like_time.rdate, 5, 10)}">2월 28일</div>
                     </div>
-                    <div th:unless="${content_like_time.like > 0}">
-                        <div>가장 먼저 <a href="#">좋아요</a>를 눌러보세요</div>
-                        <div class="date" th:text="${#strings.substring(content_like_time.rdate, 5, 10)}">2월 28일</div>
-                    </div>
+                    
 
                     <div class="comment_textarea">
                         <a href="#"><i class="fa-regular fa-face-smile fa-2x"></i></a>
