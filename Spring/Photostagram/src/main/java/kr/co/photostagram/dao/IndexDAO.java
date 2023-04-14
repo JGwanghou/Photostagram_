@@ -42,4 +42,5 @@ public interface IndexDAO {
 
     public int deleteComment(int comment_no);
 
+    public int deleteBookmark(Post_saveVO vo);
 }
