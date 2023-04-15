@@ -30,6 +30,7 @@ public interface IndexDAO {
     public void insertRespComment(CommentVO vo);
 
     public List<PostVO> selectArticles(@Param("usersNo") List<Integer> usersNo);
+    public List<Post_saveVO> selectPostSaveUser(int post_no);
     public List<CommentVO> selectComment();
 
     public List<MemberVO> selectUser();

@@ -40,4 +40,6 @@ public class PostVO {
     private List<Integer> pages;
 
     private int post_no;
+    private List<Post_saveVO> post_saveVO;
+
 }

@@ -70,6 +70,10 @@
         SELECT * FROM `user`;
     </select>
 
+    <select id="selectPostSaveUser" resultType="kr.co.photostagram.vo.Post_saveVO">
+        SELECT * FROM `post_save` WHERE `post_no` = #{post_no};
+    </select>
+
     <select id="selectFollowing" resultType="kr.co.photostagram.vo.MemberVO">
         SELECT b.* FROM `follow` AS a
         JOIN `user` AS b
