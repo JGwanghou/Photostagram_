@@ -1,6 +1,8 @@
 $(function () {
   $(".mySlides").bxSlider({});
 
+
+
   $(document).on("click", ".comment_more", function () {
     // 피 답글 닉네임
     let idtext = $(this).parent().prev().children("span").text(); // ok
