@@ -117,6 +117,19 @@ public class BoardController {
         return map;
     }
 
+    @ResponseBody
+    @PostMapping("BoardRespComment")
+    public Map<String, Object> BoardRespComment(CommentVO vo){
+
+        int result = service.insertRespComment(vo);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", result);
+        return map;
+    }
+
+
+
     @PostMapping("detailPostLike")
     @ResponseBody
     @Transactional
