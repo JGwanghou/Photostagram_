@@ -61,6 +61,10 @@ public class IndexService {
         for(PostVO vo : posts){
             int count = dao.selectCommentCountNum(vo.getNo());
             vo.setCommentCount(count);
+
+            /** 게시글 저장 DB 리스트 **/
+            List<Post_saveVO> saveUser = dao.selectPostSaveUser(vo.getNo());
+            vo.setPost_saveVO(saveUser);
         }
 
         return posts;
@@ -73,6 +77,7 @@ public class IndexService {
         for(CommentVO vo : comments){
             int likecount = dao.selectModalCommentlikeCount(vo.getNo());
             vo.setModal_likeCount(likecount);
+
         }
 
         Map<Integer, List<CommentVO>> map = comments.stream().collect(Collectors.groupingBy(CommentVO::getParent));

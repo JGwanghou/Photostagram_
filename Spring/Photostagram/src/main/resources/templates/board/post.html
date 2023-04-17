@@ -8,15 +8,30 @@
 
            $('#btnComment').click(function(e){
                 e.preventDefault();
-                //alert('click!!!');
-
+                
                 var comment = $("#comment").val();
                 var user_no = [[${user.no}]];
                 var post_no = [[${post.no}]];
                 var username = [[${user.username}]];
                 var profileImg = [[${user.profileImg}]];
 
-                var jsonData = {
+                // 작성 폼의 내용이 답글인 경우
+                if(comment.startsWith("@")){
+                    let respComment_no = $("input[name=commentNo]").val()
+                    console.log("답글 달 댓글번호 : " + respComment_no) // ok
+                    let resp = comment.split(" | ")
+                    console.log("답글 의 댓글 내용 : " + resp[1]) // ok
+                    let jsonData = {
+                        comment: resp[1],
+                        user_no:user_no,
+                        post_no:post_no
+                    }
+
+                    // $.ajax({
+
+                    // })
+                }else{
+                    var jsonData = {
                     "comment": comment,
                     "user_no": user_no,
                     "post_no": post_no
@@ -36,7 +51,7 @@
                             console.log('username : ' + username);
                             console.log('profileImg : ' + profileImg);
 
-                            
+
 
                             let tags = `<li id="text">
                                 <img class="proImg" src="/Photostagram/thumb/${profileImg}" onerror="this.src='/Photostagram/img/44884218_345707102882519_2446069589734326272_n.jpg'" alt="profile">
@@ -53,7 +68,7 @@
                                 <a href="#" id="reHeart" class="reWhite" data-no=${user_no}>좋아요</a>
 
                                 <div class="showReply">
-                                    
+
                                     <div class="listReply reHide">
                                         <ul class="reReply">
                                             <li>
@@ -82,6 +97,9 @@
                         }
                     }
                 });
+                }
+
+                
             });
 
 
