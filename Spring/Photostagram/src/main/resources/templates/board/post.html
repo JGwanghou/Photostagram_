@@ -21,46 +21,57 @@
                     console.log("답글 달 댓글번호 : " + respComment_no) // ok
                     let resp = comment.split(" | ")
                     console.log("답글 의 댓글 내용 : " + resp[1]) // ok
+
+                    let comment_length = $("li.text").length; // for
+
+                    
+
                     let jsonData = {
                         comment: resp[1],
                         user_no:user_no,
-                        post_no:post_no
+                        post_no:post_no,
+                        parent:respComment_no
                     }
+
                     
                     
-                    let a = $('#text').length;
+                    $.ajax({
+                        url:'/Photostagram/BoardRespComment',
+                        method:'POST',
+                        data:JSON.stringify(jsonData),
+                        contentType: "application/json",
+                        dataType:'json',
+                        success: function(data){
+                            let str =      "<li>"
+                                str +=          "<img class='proImg' src='/Photostagram/thumb/"+profileImg+"' onerror='this.src=/Photostagram/img/44884218_345707102882519_2446069589734326272_n.jpg'>"
+                                str +=          "<div class='reply'>"
+                                str +=       "<h1>"
+                                str +=            "<span>"+username+"</span>"
+                                str +=            ""+resp[1]+""
+                                str +=      "</h1>"
+                                str +=   "<div class='favorite'>"
+                                str +=       "<span class='comment_writeTime'>1일</span>"
+                                str +=   "좋아요"
+                                str +=   "<span class='cmt_like_count'>0</span>개"
+                                str +=   "<span class='comment_more'>답글달기</span>"
+                                str += "</div>"
+                                str += "</div>"
+                                str +="<a href='#' id='reHeart' class='reWhite'>좋아요</a>"
+                                str +="</li>"
+                                
+                            
+                                for(let i=0; i<comment_length; i++){
 
-                    console.log(" a : " + a);
-                    // $.ajax({
-                    //     url:'/Photostagram/BoardRespComment',
-                    //     method:'POST',
-                    //     data:JSON.stringify(jsonData),
-                    //     contentType: "application/json",
-                    //     dataType:'json',
-                    //     success: function(data){
-                    //         let str = `
-                    //                 <li>
-                    //                     <img class="proImg" src="/Photostagram/thumb/${profileImg}" onerror="this.src='/Photostagram/img/44884218_345707102882519_2446069589734326272_n.jpg'" alt="profile">
-
-                    //                     <div class="reply">
-                    //                         <h1>
-                    //                             <span>${username}</span>
-                    //                             ${resp[1]}
-                    //                         </h1>
-                    //                         <div class="favorite">
-                    //                             <span class="comment_writeTime">1일</span>
-                    //                             좋아요
-                    //                             <span class="cmt_like_count">0</span>개
-                    //                             <span class="comment_more">답글달기</span>
-                    //                         </div>
-                    //                     </div>
-                    //                     <a href="#" id="reHeart" class="reWhite">좋아요</a>
-                    //                 </li>
-                    //             `
-                    //         $(".reReply").append(str);
-                    //         $("#comment").val('');
-                    //     }
-                    // })
+                                    let text_cmt = $("li.text").eq(i);
+                                    console.log("text_cmt : " + text_cmt)
+                                    
+                                    if(text_cmt.attr("data-no") == respComment_no){
+                                        text_cmt.find('.reReply').append(str);
+                                    }
+                                }
+                            $("#comment").val('');
+                        }
+                    })
                 }else{
 
                     var jsonData = {
@@ -68,6 +79,8 @@
                     "user_no": user_no,
                     "post_no": post_no
                     };
+                    
+                    
 
                     console.log('jsonData : ' + JSON.stringify(jsonData));
 
@@ -184,15 +197,16 @@
                     <!---->
 
                     <!-- 댓글 -->
-                    <li id="text" th:each="commentVo:${comments}" th:if="${commentVo.post_no == NowArticleNo}">
+                    <li class="text" th:each="commentVo:${comments}"
+                        th:if="${commentVo.post_no == NowArticleNo}"
+                        th:data-no="${commentVo.no}"
+                    >
                         <a th:href="@{/profile(username = ${commentVo.memberVO.username})}">
                             <img class="proImg" th:src="|@{/}thumb/${commentVo.profileImg}" onerror="this.src='/Photostagram/img/44884218_345707102882519_2446069589734326272_n.jpg'" alt="profile">
                         </a>
                         <div class="reply">
                             <h1 class="comment_width">
-<!--                                <a th:href="@{/profile(username = ${commentVo.username})}">-->
                                     <span>[[${commentVo.username}]]</span>
-<!--                                </a>-->
                                 [[${commentVo.comment}]]
                             </h1>
 

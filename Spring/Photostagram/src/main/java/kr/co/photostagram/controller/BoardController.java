@@ -119,7 +119,7 @@ public class BoardController {
 
     @ResponseBody
     @PostMapping("BoardRespComment")
-    public Map<String, Object> BoardRespComment(CommentVO vo){
+    public Map<String, Object> BoardRespComment(@RequestBody CommentVO vo){
 
         int result = service.insertRespComment(vo);
 
