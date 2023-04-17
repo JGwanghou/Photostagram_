@@ -122,7 +122,7 @@ function setDateSelectBox(){
 /*]]*/
 </script>
 <script>
-$(function(){
+    $(function(){
     $("#goSorting").on('click', function(){
         let sortValue = $('.buttonOn').attr('data-value');
         let year1 = $('select[name="startYear"]').val();
@@ -135,50 +135,27 @@ $(function(){
         console.log("sortValue : " + sortValue);
         console.log("start : " + year1, month1, day1);
         console.log("end : " + year2, month2, day2);
+
+        let jsonData = {
+            "startYear" : year1 ,
+            "startMonth" : month1 ,
+            "startDay" : day1 ,
+            "endYear" : year2 ,
+            "endMonth" : month2 ,
+            "endDay" : day2
+        };
+
+        $.ajax({
+            url: '/Photostagram/my/sort',
+            type: 'post',
+            data: jsonData,
+            dataType: 'json',
+            success: function(data){
+                if (data.result > 0) {
+                    alert('수정 완료');
+                }
+            }
+        });
     });
 });
-</script>
-<script>
-
-    $("#startMonthBox").change(function(){
-        const day31 = []; const day30 = [];
-
-        for (var i=1; i<=30; i++){
-            day31.push(i); day30.push(i);
-        }
-        day31.push(31);
-
-        //console.log (day31);
-        //console.log (day30);
-
-        let change;
-        let month = $("#startMonthBox").val();
-        let year = $("#startYearBox").val();
-
-        switch (month) {
-            case '1': case '3': case '5': case '7': case '8': case '10': case '12':
-                change = day31;
-                break;
-            case '4': case '6': case '9': case '11':
-                change = day30;
-                break;
-            case '2':
-                change = day30;
-                if (year % 4 == 0) {
-                    change.pop();
-                } else {
-                    change.pop(); change.pop();
-                }
-        }
-
-        console.log (change);
-
-        $("#startDayBox").empty();
-        let option;
-        for (let i=1; i<=change.length; i++){
-            option = $("<option>" + i + "</option>");
-            $("#startDayBox").append(option);
-        }
-    });
-
 </script>

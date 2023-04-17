@@ -41,6 +41,12 @@ public class MyController {
             map.put(i, article);
         }
 
+        String joinDate = service.selectJoinDate(user.getNo());
+
+        int startYear = Integer.parseInt(joinDate.substring(0, 4));
+        int startMonth = Integer.parseInt(joinDate.substring(5, 7));
+        int startDay = Integer.parseInt(joinDate.substring(8, 10));
+
         //Map<Integer, PostVO> sortMap = new TreeMap<>(map);
         Map<Integer, PostVO> sortMap = new TreeMap<>(Comparator.reverseOrder());
         sortMap.putAll(map);
@@ -49,6 +55,9 @@ public class MyController {
         model.addAttribute("user", user);
         model.addAttribute("sortMap", sortMap);
         model.addAttribute("cate", "interaction");
+        model.addAttribute("startYear", startYear);
+        model.addAttribute("startMonth", startMonth);
+        model.addAttribute("startDay", startDay);
         return "my/interaction/like";
     }
 
@@ -67,10 +76,19 @@ public class MyController {
         Map<Integer, PostVO> sortMap = new TreeMap<>(Comparator.reverseOrder());
         sortMap.putAll(map);
 
+        String joinDate = service.selectJoinDate(user.getNo());
+
+        int startYear = Integer.parseInt(joinDate.substring(0, 4));
+        int startMonth = Integer.parseInt(joinDate.substring(5, 7));
+        int startDay = Integer.parseInt(joinDate.substring(8, 10));
+
         model.addAttribute("user", user);
         model.addAttribute("posts", posts);
         model.addAttribute("sortMap", sortMap);
         model.addAttribute("cate", "interaction");
+        model.addAttribute("startYear", startYear);
+        model.addAttribute("startMonth", startMonth);
+        model.addAttribute("startDay", startDay);
         return "my/interaction/comment";
     }
 
@@ -87,11 +105,20 @@ public class MyController {
             map.put(i, article);
         }
 
+        String joinDate = service.selectJoinDate(user.getNo());
+
+        int startYear = Integer.parseInt(joinDate.substring(0, 4));
+        int startMonth = Integer.parseInt(joinDate.substring(5, 7));
+        int startDay = Integer.parseInt(joinDate.substring(8, 10));
+
         Map<Integer, PostVO> sortMap = new TreeMap<>(map);
 
         model.addAttribute("user", user);
         model.addAttribute("cate", "photos");
         model.addAttribute("sortMap", sortMap);
+        model.addAttribute("startYear", startYear);
+        model.addAttribute("startMonth", startMonth);
+        model.addAttribute("startDay", startDay);
         return "my/photos/posts";
     }
 
@@ -163,5 +190,30 @@ public class MyController {
         return map;
 
     }
+
+    @ResponseBody
+    @PostMapping("my/sort")
+    public Map<String, Integer> sort (@RequestParam(value="startYear") String startYear,
+                                      @RequestParam(value="startMonth") String startMonth,
+                                      @RequestParam(value="startDay") String startDay,
+                                      @RequestParam(value="endYear") String endYear,
+                                      @RequestParam(value="endMonth") String endMonth,
+                                      @RequestParam(value="endDay") String endDay){
+        Map<String, Integer> map = new HashMap<>();
+        //System.out.println("start-year : "+ startYear);
+        //System.out.println("start-year : "+ startMonth);
+        //System.out.println("start-year : "+ startDay);
+        //System.out.println("start-year : "+ endYear);
+        //System.out.println("start-year : "+ endMonth);
+        //System.out.println("start-year : "+ endDay);
+
+        String start = startYear +"-"+ startMonth +"-"+ startDay;
+        String end = endYear +"-"+ endMonth +"-"+ endDay;
+
+        System.out.println(start);
+        System.out.println(end);
+        return map;
+    }
+
 
 }
