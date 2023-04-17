@@ -12,7 +12,7 @@
 
                             <div class="content5" th:each="vo:${allImg}">
                                 <div class="content6">
-                                    <a class="content7" href="#">
+                                    <a class="content7" th:href="@{/board/post (no=${vo.no})}">
                                         <div class="content8">
                                             <div class="content9">
                                                 <img th:src="|@{/}thumb/${vo.thumb}">
