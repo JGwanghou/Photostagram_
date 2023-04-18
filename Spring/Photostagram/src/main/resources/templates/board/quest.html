@@ -15,7 +15,13 @@
                                     <a class="content7" th:href="@{/board/post (no=${vo.no})}">
                                         <div class="content8">
                                             <div class="content9">
-                                                <img th:src="|@{/}thumb/${vo.thumb}">
+                                                <th:block th:if="${#strings.contains(vo.thumb,'.mp4')}">
+                                                    <video th:src="|@{/}thumb/${vo.thumb}"></video>
+                                                    <i class="fa-solid fa-film fa-2x faIcons"></i>
+                                                </th:block>
+                                                <th:block th:unless="${#strings.contains(vo.thumb,'.mp4')}">
+                                                    <img th:src="|@{/}thumb/${vo.thumb}" alt="게시물 사진" />
+                                                </th:block>
                                             </div>
                                             <div class="content11"></div>
                                         </div>
