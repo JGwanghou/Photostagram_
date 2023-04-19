@@ -9,7 +9,6 @@
                 <div class="content2">
                     <div class="content3">
                         <div class="content4">
-
                             <div class="content5" th:each="vo:${allImg}">
                                 <div class="content6">
                                     <a class="content7" th:href="@{/board/post (no=${vo.no})}">
@@ -21,6 +20,9 @@
                                                 </th:block>
                                                 <th:block th:unless="${#strings.contains(vo.thumb,'.mp4')}">
                                                     <img th:src="|@{/}thumb/${vo.thumb}" alt="게시물 사진" />
+                                                    <th:block th:if="${vo.thumbs > 1}">
+                                                        <i class="fa-solid fa-images fa-2x faIcons"></i>
+                                                    </th:block>
                                                 </th:block>
                                             </div>
                                             <div class="content11"></div>
@@ -31,9 +33,6 @@
                                     </a>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
