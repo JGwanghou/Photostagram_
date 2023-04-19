@@ -202,3 +202,15 @@ $(function(){
         }
     }
 });
+
+/*** modal 최신순, 오래된순 ***/
+$(function(){
+    $("#recentBtn").on("click", function(){
+        $("#recentBtn").addClass("buttonOn");
+        $("#oldestBtn").removeClass("buttonOn");
+    });
+    $("#oldestBtn").on("click", function(){
+        $("#oldestBtn").addClass("buttonOn");
+        $("#recentBtn").removeClass("buttonOn");
+    });
+});

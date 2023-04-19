@@ -193,13 +193,19 @@ public class MyController {
 
     @ResponseBody
     @PostMapping("my/sort")
-    public Map<String, Integer> sort (@RequestParam(value="startYear") String startYear,
+    public Map<Integer, PostVO> sort (Principal principal,
+                                      @RequestParam(value="sortValue") String sortValue,
+                                      @RequestParam(value="startYear") String startYear,
                                       @RequestParam(value="startMonth") String startMonth,
                                       @RequestParam(value="startDay") String startDay,
                                       @RequestParam(value="endYear") String endYear,
                                       @RequestParam(value="endMonth") String endMonth,
-                                      @RequestParam(value="endDay") String endDay){
-        Map<String, Integer> map = new HashMap<>();
+                                      @RequestParam(value="endDay") String endDay,
+                                      @RequestParam(value="type") String type){
+
+        int no = profileService.selectMember(principal.getName()).getNo();
+
+        Map<Integer, PostVO> sortMap = new HashMap<>();
         //System.out.println("start-year : "+ startYear);
         //System.out.println("start-year : "+ startMonth);
         //System.out.println("start-year : "+ startDay);
@@ -207,11 +213,55 @@ public class MyController {
         //System.out.println("start-year : "+ endMonth);
         //System.out.println("start-year : "+ endDay);
 
-        String start = startYear +"-"+ startMonth +"-"+ startDay;
-        String end = endYear +"-"+ endMonth +"-"+ endDay;
+        String sort = null;
 
+        if ("recent".equals(sortValue)){
+            sort = "DESC";
+        } else {
+            sort = "ASC";
+        }
+
+        String start = startYear +"-"+ startMonth +"-"+ startDay+" 00:00:00";
+        String end = endYear +"-"+ endMonth +"-"+ endDay+" 23:59:59";
+
+
+        Map<Integer, PostVO> map = new TreeMap<>();
+
+        if ("history".equals(type)){
+            service.sortSelectHistory(no, start, end);
+        } else if ("posts".equals(type)){
+            List<PostVO> articles = service.sortSelectPosts(no, start, end);
+            for (int i=0; i<articles.size(); i++){
+                int artNo = articles.get(i).getNo();
+                PostVO article = profileService.selectThumb(no, artNo);
+                sortMap.put(i, article);
+                map = new TreeMap<>(sortMap);
+            }
+        } else if ("like".equals(type)){
+            int[] articles = service.sortSelectLikePostNo(no, start, end);
+            for (int i=0; i<articles.length; i++){
+                PostVO article = service.selectPost(articles[i]);
+                sortMap.put(i, article);
+            }
+            map = new TreeMap<>(Comparator.reverseOrder());
+            map.putAll(sortMap);
+            System.out.println(map);
+        } else if ("comment".equals(type)){
+            List<PostVO> articles = service.sortSelectMyCommentPosts(no, start, end);
+            for (int i=0; i<articles.size(); i++) {
+                List<CommentVO> comments = service.selectMyComments(articles.get(i).getNo(), no);
+                articles.get(i).setComments(comments);
+                sortMap.put(i, articles.get(i));
+            }
+            map = new TreeMap<>(Comparator.reverseOrder());
+            map.putAll(sortMap);
+        }
+
+
+        System.out.println(sort);
         System.out.println(start);
         System.out.println(end);
+        System.out.println(map);
         return map;
     }
 

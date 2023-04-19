@@ -28,6 +28,10 @@ public class MyService {
     public List<PostVO> selectMyCommentPosts (int no) {return dao.selectMyCommentPosts(no);}
     public List<CommentVO> selectMyComments (int postNo, int userNo) {return dao.selectMyComments(postNo, userNo);}
     public List<HistoryVO> selectHistory (int no) {return dao.selectHistory(no);}
+    public int[] sortSelectLikePostNo (int no, String start, String end) {return dao.sortSelectLikePostNo(no, start, end);}
+    public List<PostVO> sortSelectMyCommentPosts (int no, String start, String end) {return dao.sortSelectMyCommentPosts(no, start, end);}
+    public List<PostVO> sortSelectPosts (int no, String start, String end) {return dao.sortSelectPosts(no, start, end);}
+    public List<HistoryVO> sortSelectHistory (int no, String start, String end) {return dao.sortSelectHistory(no, start, end);}
     public String selectJoinDate (int no) {return dao.selectJoinDate(no);}
     public int updateRemoveLike (int no) {return dao.updateRemoveLike(no);}
     public int deleteComment(int no) {return dao.deleteComment(no);}

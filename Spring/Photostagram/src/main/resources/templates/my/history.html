@@ -137,12 +137,14 @@ function setDateSelectBox(){
         console.log("end : " + year2, month2, day2);
 
         let jsonData = {
+            "sortValue" : sortValue ,
             "startYear" : year1 ,
             "startMonth" : month1 ,
             "startDay" : day1 ,
             "endYear" : year2 ,
             "endMonth" : month2 ,
-            "endDay" : day2
+            "endDay" : day2 ,
+            "type" : "history"
         };
 
         $.ajax({
