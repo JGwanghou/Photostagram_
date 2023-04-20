@@ -64,8 +64,7 @@ public class IndexController {
 
         // 게시글 조회
         List<PostVO> articles = service.selectArticles(usersNo);
-
-
+        log.info("articles : " + articles);
         // 댓글 조회
         List<CommentVO> comments = service.selectComment();
 
