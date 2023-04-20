@@ -61,10 +61,6 @@ public class IndexService {
         for(PostVO vo : posts){
             int count = dao.selectCommentCountNum(vo.getNo());
             vo.setCommentCount(count);
-
-            /** 게시글 저장 DB 리스트 **/
-            List<Post_saveVO> saveUser = dao.selectPostSaveUser(vo.getNo());
-            vo.setPost_saveVO(saveUser);
         }
 
         return posts;
@@ -99,6 +95,9 @@ public class IndexService {
         return oriComment;
     }
 
+    public List<Post_saveVO> selectPostSaveUser(){
+        return dao.selectPostSaveUser();
+    }
     public int deleteComment(int comment_no) {
         return dao.deleteComment(comment_no);
     }
