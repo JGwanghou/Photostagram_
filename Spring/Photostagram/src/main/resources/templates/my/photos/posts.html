@@ -95,3 +95,41 @@ function setDateSelectBox(){
 }
 /*]]*/
 </script>
+<script>
+$(function(){
+    $("#goSorting").on('click', function(){
+        let sortValue = $('.buttonOn').attr('data-value');
+        let year1 = $('select[name="startYear"]').val();
+        let year2 = $('select[name="endYear"]').val();
+        let month1 = $('select[name="startMonth"]').val();
+        let month2 = $('select[name="endMonth"]').val();
+        let day1 = $('select[name="startDay"]').val();
+        let day2 = $('select[name="endDay"]').val();
+
+        console.log("sortValue : " + sortValue);
+        console.log("start : " + year1, month1, day1);
+        console.log("end : " + year2, month2, day2);
+
+        let jsonData = {
+            "sortValue" : sortValue ,
+            "startYear" : year1 ,
+            "startMonth" : month1 ,
+            "startDay" : day1 ,
+            "endYear" : year2 ,
+            "endMonth" : month2 ,
+            "endDay" : day2 ,
+            "type" : "posts"
+        };
+
+        $.ajax({
+            url: '/Photostagram/my/sort',
+            type: 'post',
+            data: jsonData,
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+            }
+        });
+    });
+});
+</script>

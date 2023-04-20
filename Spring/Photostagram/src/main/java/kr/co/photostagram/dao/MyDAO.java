@@ -33,10 +33,10 @@ public interface MyDAO {
     public List<HistoryVO> selectHistory (int no);
 
     /*** 날짜 별 정렬 ***/
-    public int[] sortSelectLikePostNo (@Param("no") int no, @Param("start") String start, @Param("end") String end);
-    public List<PostVO> sortSelectMyCommentPosts (@Param("no") int no, @Param("start") String start, @Param("end") String end);
-    public List<PostVO> sortSelectPosts (@Param("no") int no, @Param("start") String start, @Param("end") String end);
-    public List<HistoryVO> sortSelectHistory (@Param("no") int no, @Param("start") String start, @Param("end") String end);
+    public int[] sortSelectLikePostNo (@Param("no") int no, @Param("start") String start, @Param("end") String end, @Param("sort") String sort);
+    public List<PostVO> sortSelectMyCommentPosts (@Param("no") int no, @Param("start") String start, @Param("end") String end, @Param("sort") String sort);
+    public List<PostVO> sortSelectPosts (@Param("no") int no, @Param("start") String start, @Param("end") String end, @Param("sort") String sort);
+    public List<HistoryVO> sortSelectHistory (@Param("no") int no, @Param("start") String start, @Param("end") String end, @Param("sort") String sort);
 
     public String selectJoinDate (int no);
     public int updateRemoveLike (int no);

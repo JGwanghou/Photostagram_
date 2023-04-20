@@ -92,7 +92,19 @@
     <select id="sortSelectLikePostNo" resultType="int">
         SELECT `post_no` FROM `post_like`
             WHERE `user_no` = #{no}
-            AND `rdate` BETWEEN #{start} AND #{end};
+            AND `rdate` BETWEEN #{start} AND #{end}
+            ORDER BY `rdate`
+            <choose>
+                <when test= "sort == 'recent'">
+                    DESC;
+                </when>
+                <when test= "sort == 'oldest'">
+                    ASC;
+                </when>
+                <otherwise>
+                    ;
+                </otherwise>
+            </choose>
     </select>
 
     <select id="sortSelectMyCommentPosts" resultType="kr.co.photostagram.vo.PostVO">
@@ -111,7 +123,18 @@
                 ON a.`no` = e.`post_no`
             WHERE e.`user_no` = #{no}
             AND e.`rdate` BETWEEN #{start} AND #{end}
-            GROUP BY a.`no`;
+            GROUP BY a.`no`
+            <choose>
+                <when test= "sort == 'recent'">
+                    DESC;
+                </when>
+                <when test= "sort == 'oldest'">
+                    ASC;
+                </when>
+                <otherwise>
+                    ;
+                </otherwise>
+            </choose>
     </select>
 
     <select id="sortSelectPosts" resultType="kr.co.photostagram.vo.PostVO">
@@ -121,7 +144,18 @@
             ON a.`no`=b.`post_no`
             WHERE a.`user_no`=#{no}
             AND `rdate` BETWEEN #{start} AND #{end}
-            GROUP BY a.`no` DESC;
+            GROUP BY a.`no`
+            <choose>
+                <when test= "sort == 'recent'">
+                    DESC;
+                </when>
+                <when test= "sort == 'oldest'">
+                    ASC;
+                </when>
+                <otherwise>
+                    ;
+                </otherwise>
+            </choose>
             <!--DESC LIMIT #{index}, 25 ;       무한스크롤 페이징 처리하며 추가 -->
     </select>
 
@@ -129,7 +163,18 @@
         SELECT * FROM `history`
             WHERE `user_no` = #{no}
             AND `rdate` BETWEEN #{start} AND #{end}
-            ORDER BY `rdate` DESC;
+            ORDER BY `rdate`
+            <choose>
+                <when test= "sort == 'recent'">
+                    DESC;
+                </when>
+                <when test= "sort == 'oldest'">
+                    ASC;
+                </when>
+                <otherwise>
+                    ;
+                </otherwise>
+            </choose>
     </select>
 
     <select id="selectJoinDate" resultType="String">

@@ -122,7 +122,7 @@ function setDateSelectBox(){
 /*]]*/
 </script>
 <script>
-    $(function(){
+$(function(){
     $("#goSorting").on('click', function(){
         let sortValue = $('.buttonOn').attr('data-value');
         let year1 = $('select[name="startYear"]').val();
@@ -143,19 +143,16 @@ function setDateSelectBox(){
             "startDay" : day1 ,
             "endYear" : year2 ,
             "endMonth" : month2 ,
-            "endDay" : day2 ,
-            "type" : "history"
+            "endDay" : day2
         };
 
         $.ajax({
-            url: '/Photostagram/my/sort',
+            url: '/Photostagram/my/history',
             type: 'post',
             data: jsonData,
             dataType: 'json',
             success: function(data){
-                if (data.result > 0) {
-                    alert('수정 완료');
-                }
+                console.log(data);
             }
         });
     });
