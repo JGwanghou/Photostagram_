@@ -74,6 +74,7 @@ public class BoardController {
 
         /***태그된 사람***/
         List<UserTagVO> userTags = service.selectUserTags(no);
+        log.info("userTags :"+userTags);
 
         Post_likeVO post_like_user = service.selectPostLike(no, user.getNo());
         log.info("post like null Check : " +  post_like_user);
