@@ -21,13 +21,13 @@
  - 팀장4 이왕근 : - 게시물 상세보기 기능 구현, 탐색 탭 화면/기능 구현
 
 ### ⚙️ 개발 환경
- - `Java 11` `JavaScript ES6` `thymeleaf`
- - **IDE** : IntelliJ IDEA Community Edition 2022.3.1, HeidiSQL
- - **Framework** : Spring Boot(2.7.10-SNAPSHOT)
- - **DataBase** : MySQL 8.0 (서비스 환경 : Maria DB 5.5.68)
- - **ORM** : Mybatis
- - **형상관리** : Git 2.37.2
- - **배포** : AWS EC2
+ - `Java 11` `JavaScript ES 6` `thymeleaf`
+ - **IDE** : `IntelliJ IDEA Community Edition 2022.3.1`, `HeidiSQL`
+ - **Framework** : `Spring Boot(2.7.10-SNAPSHOT)`
+ - **DataBase** : `MySQL 8.0 (서비스 환경 : Maria DB 5.5.68)`
+ - **ORM** : `Mybatis`
+ - **형상관리** : `Git 2.37.2`
+ - **배포** : `AWS EC2`
 ## 📌 주요 기능
 #### 로그인
  - 회원, 비회원 구분
