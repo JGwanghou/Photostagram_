@@ -26,7 +26,7 @@
  - **Framework** : Spring Boot(2.7.10-SNAPSHOT)
  - **DataBase** : MySQL 8.0 (서비스 환경 : Maria DB 5.5.68)
  - **ORM** : Mybatis
-
+ - **배포** : AWS EC2
 ## 📌 주요 기능
 #### 로그인
  - 회원, 비회원 구분
