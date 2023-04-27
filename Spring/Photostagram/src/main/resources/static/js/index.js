@@ -12,7 +12,6 @@ $(function () {
     moveSlides: 1,
   });
 
-
   //메인콘텐츠 더보기 누를 경우
   $(".contents").each(function () {
     let article = $(this).closest("article");
@@ -214,6 +213,7 @@ $(function () {
 
             article.find(".comment_container").append(str);
             article.find(".commentText").val("");
+            article.find(".modal_commentText").val("");
 
             let count = article.find("#comment-count").text(); // 현재 태그사이 텍스트받고
             let commentCount = parseInt(count); // 문자열이라 더하기가 안되기때문에 parseInt
@@ -527,8 +527,6 @@ $(function () {
         }
       },
     });
-    console.log(" value 클릭 하기 전: " + value);
-    console.log(" post_no 클릭 하기 전 : " + post_no);
   });
 
   $(document).on("click", ".sprite_full_bookmark_outline", function () {
@@ -566,6 +564,11 @@ $(function () {
 
   // 댓글삭제
   $(".post_delete").on("click", function () {
+    let modalTop = $(this).closest(".modal-post");
+    let modalbxSlider = modalTop.find(".bx-controls-direction");
+
+    $("#modal_postSelect").css("display", "none");
+
     let no = $(this).attr("data-value");
 
     let jsonData = { comment_no: no };
@@ -576,10 +579,13 @@ $(function () {
       data: jsonData,
       dataType: "json",
       success: function (data) {
-        if (data.result == 0) {
+        console.log(data);
+        if (data.result == 1) {
           alert("댓글 삭제에 성공했습니다!");
+          modalbxSlider.show();
         } else {
           alert("답글이 존재하면 삭제할 수 없습니다");
+          modalbxSlider.show();
         }
       },
     });

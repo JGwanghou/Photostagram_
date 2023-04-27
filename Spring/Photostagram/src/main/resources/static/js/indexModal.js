@@ -62,10 +62,14 @@ $(function () {
 
   // (1)댓글 Modal Open
 
-  $(".comment_option").on("click", function () {
+  $(".comment_option, .modal_postDelete").on("click", function () {
     let rootTop = $(this).closest("div.top");
+    let modalTop = $(this).closest(".modal-post");
+
     let postSelect = rootTop.find("#modal_postSelect");
+    let modalbxSlider = modalTop.find(".bx-controls-direction");
     postSelect.show();
+    modalbxSlider.hide();
   });
 
   //(1)에서 삭제버튼 클릭 시
@@ -80,13 +84,22 @@ $(function () {
   // modal 취소 관련
   $(".modal_postCancel").on("click", function () {
     let rootTop = $(this).closest("div.top");
+    let modalTop = $(this).closest(".modal-post");
+
     let postSelect = rootTop.find("#modal_postSelect");
+    let modalbxSlider = modalTop.find(".bx-controls-direction");
     postSelect.hide();
+    modalbxSlider.show();
   });
 
   $(".post_delete_cancel").on("click", function () {
     let rootTop = $(this).closest("div.top");
+    let modalTop = $(this).closest(".modal-post");
+
     let postSelect_delete = rootTop.find("#modal_postSelect_delete");
+    let modalbxSlider = modalTop.find(".bx-controls-direction");
+
     postSelect_delete.hide();
+    modalbxSlider.show();
   });
 });
