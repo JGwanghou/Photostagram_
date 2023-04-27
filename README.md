@@ -1,5 +1,7 @@
 # SpringBoot-Photostagram
 스프링 부트 + SNS 커뮤니티 사이트
+![image](https://user-images.githubusercontent.com/111489868/234818706-7a3d5d16-7bf7-4f30-b681-aefc4f563a6e.png)
+
 
 ## 🖥️  프로젝트 소개 
 인스타그램을 참고하여 다양한 사람들과 사진과 동영상으로 일상을 공유하고, <br><br>유저 간 채팅을 통해 소통할 수 있는 소셜 미디어 플랫폼을 만들고 싶었습니다.
