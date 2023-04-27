@@ -1,5 +1,5 @@
 # SpringBoot-Photostagram
-스프링 부트 + SNS 커뮤니티 사이트
+### 스프링 부트 + SNS 커뮤니티 사이트
 ![image](https://user-images.githubusercontent.com/111489868/234818706-7a3d5d16-7bf7-4f30-b681-aefc4f563a6e.png)
 
 
