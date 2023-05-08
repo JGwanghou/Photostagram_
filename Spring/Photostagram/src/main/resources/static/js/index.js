@@ -190,6 +190,7 @@ $(function () {
             modal_comment +=
               "<span id='md_comment_likeCount'>0</span>개&nbsp;&nbsp;";
             modal_comment += "<span class='resp_comment'>답글달기</span>";
+            modal_comment += "<button class='comment_option' style='display:inline'></button>"
             modal_comment += "</div>";
             modal_comment += "</div>";
             modal_comment += "</div>";
@@ -563,15 +564,16 @@ $(function () {
   });
 
   // 댓글삭제
-  $(".post_delete").on("click", function () {
+  $(".post_delete > span").on("click", function () {
+    let deleteModal = $(this).parent().parent().parent().parent();
     let modalTop = $(this).closest(".modal-post");
     let modalbxSlider = modalTop.find(".bx-controls-direction");
-
-    $("#modal_postSelect").css("display", "none");
+    let top = $(this).closest("div.top");
 
     let no = $(this).attr("data-value");
 
     let jsonData = { comment_no: no };
+    console.log("jsonData" + jsonData);
 
     $.ajax({
       url: "/Photostagram/deleteComment",
@@ -580,12 +582,10 @@ $(function () {
       dataType: "json",
       success: function (data) {
         console.log(data);
-        if (data.result == 1) {
+        if (data.result == 0 || data.result == 1) {
           alert("댓글 삭제에 성공했습니다!");
-          modalbxSlider.show();
-        } else {
-          alert("답글이 존재하면 삭제할 수 없습니다");
-          modalbxSlider.show();
+          deleteModal.hide();
+          top.hide();
         }
       },
     });
