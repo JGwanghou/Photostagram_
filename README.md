@@ -5,7 +5,8 @@
 ## 🖥️  프로젝트 소개 
 인스타그램을 참고하여 다양한 사람들과 사진과 동영상 등 시각적인 콘텐츠로 일상을 공유하고, <br><br>유저 간 채팅을 통해 소통할 수 있는 웹 공간 내 작은 소셜 미디어 플랫폼을 만들고 싶었습니다.
 <br>
-  
+<br>
+유튜브 시연영상 : [유튜브 시연영상 보러가기](https://www.youtube.com/watch?v=4bwgKEtKQTU&list=PLdNUPp-e20Fs1uU6FnW8bYvA6bnGarajD)  
   
 ## ⚙️ Architecture
 ![image](https://user-images.githubusercontent.com/111489868/235429335-a5ed5fc5-cfc4-45b0-8907-dbd1477a896b.png)
